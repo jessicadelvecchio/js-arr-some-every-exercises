@@ -6,7 +6,11 @@ Examples:
     hasOddNumber([2,2,2,2,2,4]) // false
 */
 
-function hasOddNumber(arr) {}
+function hasOddNumber(arr) {
+  return arr.some(function (el) {
+    return el % 2 !== 0;
+  });
+}
 
 /*
 Write a function called hasAZero which accepts a number and returns true if that number contains at least one zero. Otherwise, the function should return false
@@ -16,7 +20,24 @@ Examples:
     hasAZero(1212121) // false
 */
 
-function hasAZero(num) {}
+// My attemp
+// function hasAZero(num) {
+//   return num.some(function (val) {
+//     return val.indexOf("0") !== -1;
+//   });
+// }
+
+function hasAZero(num) {
+  // need to create a string from the num
+  // need to split each number into individuals to then test if there is a zero
+  return num
+    .toString()
+    .split("")
+    .some(function (val) {
+      // comparing string to string. Need the quotes
+      return val === "0";
+    });
+}
 
 /*
 Write a function called hasOnlyOddNumbers which accepts an array and returns true if every single number in the array is odd. If any of the values in the array are not odd, the function should return false. 
@@ -26,7 +47,11 @@ Examples:
     hasOnlyOddNumbers([1,2,3,5,7]) // false
 */
 
-function hasOnlyOddNumbers(arr) {}
+function hasOnlyOddNumbers(arr) {
+  return arr.every(function (val) {
+    return val % 2 !== 0;
+  });
+}
 
 /*
 Write a function called hasNoDuplicates which accepts an array and returns true if there are no duplicate values (more than one element in the array that has the same value as another). If there are any duplicates, the function should return false.
@@ -36,7 +61,16 @@ Examples:
     hasNoDuplicates([1,2,3]) // true
 */
 
-function hasNoDuplicates(arr) {}
+// ! how does this work?
+// ? https://www.w3schools.com/jsref/jsref_lastindexof_array.asp
+function hasNoDuplicates(arr) {
+  //   return arr.some(function (val, i) {
+  //     return arr.indexOf(val) !== i;
+  //   });
+  return arr.every(function (val) {
+    return arr.indexOf(val) === arr.lastIndexOf(val);
+  });
+}
 
 /*
 Write a function called hasCertainKey which accepts an array of objects and a key, and returns true if every single object in the array contains that key. Otherwise it should return false.
@@ -53,7 +87,11 @@ Examples:
     hasCertainKey(arr,'isCatOwner') // false
 */
 
-function hasCertainKey(arr, key) {}
+function hasCertainKey(arr, key) {
+  return arr.every(function (val) {
+    return val[key];
+  });
+}
 
 /*
 Write a function called hasCertainValue which accepts an array of objects and a key, and a value, and returns true if every single object in the array contains that value for the specific key. Otherwise it should return false.
@@ -71,4 +109,8 @@ Examples:
     
 */
 
-function hasCertainValue(arr, key, searchValue) {}
+function hasCertainValue(arr, key, searchValue) {
+  return arr.every(function (val) {
+    return val[key] === searchValue;
+  });
+}
